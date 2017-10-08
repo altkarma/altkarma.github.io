@@ -1,2 +1,2 @@
 # altkarma.github.io
-altkarma website
+www.altkarma.com
