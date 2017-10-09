@@ -1,146 +1,180 @@
-var $ = jQuery;
 
-jQuery(document).ready(function($) {  
+jQuery(document).ready(function() {
+	
 
-    $(window).load(function(){
-        $('#preloader').fadeOut('slow',function(){$(this).remove();});
-    });
+$(window).load(function () {
+		$(".loaded").fadeOut();
+		$(".preloader").delay(1000).fadeOut("slow");
+	});
+	  
+	  
+	jQuery(window).scroll(function () {
+	  var top = jQuery(document).scrollTop();
+		var height = 300;
+	  //alert(batas);
+	  
+	  if (top > height) {
+		jQuery('.navbar-fixed-top').addClass('menu-scroll');
+	  } else {
+	   jQuery('.navbar-fixed-top').removeClass('menu-scroll');
+	  }
+	});	 
+
+//    /*---------------------------------------------*
+//     * Counter 
+//     ---------------------------------------------*/
+
+//		$('.static-counter').counterUp({
+//			delay: 10,
+//			time: 2000
+//		});
+
+		
+
+
+//<!-- =============================================== -->
+//<!-- ========== fancy box ========== -->
+//<!-- =============================================== -->
+
+
+
+	$(".youtube-media").on("click", function(e) {
+		var jWindow = $(window).width();
+		if (jWindow <= 410) {
+			return;
+		}
+		$.fancybox({
+			href: this.href,
+			padding: 4,
+			type: "iframe",
+			'href': this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+		});
+		return false;
+	});
+	
+
+
+
+
+
+//<!-- =============================================== -->
+//<!-- ========== owlcarousel team ========== -->
+//<!-- =============================================== -->
+
+
+
+
+$(".main_testimonial").owlCarousel({
+
+/*autoPlay: 3000, //Set AutoPlay to 3 seconds*/
+items : 1,
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+
+pagination : true,
+paginationNumbers: false,
+ singleItem:true,
+
+responsive: true,
+responsiveRefreshRate : 200,
+responsiveBaseWidth: window
 
 });
 
 
-$(window).scroll(function(){
-    if($(window).scrollTop() > 2){
-        $(".commanHeader").addClass("sticky");
-    }else{
 
-        $(".commanHeader").removeClass("sticky");
-    }
-});
-// Setting up Video
 
-var $ = jQuery;
-var vidWidth = $(window).width(), vidHeight = $(window).height();
 
-$("#video-wrap").css({
+
+
+
+//<!-- =============================================== -->
+//<!-- ========== scrollTop.js ========== -->
+//<!-- =============================================== -->
     
-    'height': vidHeight
-});
-
-$('#video').videoBG({
-    mp4:'assets/giphy.mp4',
-    ogv:'assets/giphy.ogv',
-    webm:'assets/giphy.webm',
-    poster:'assets/poster.jpg',
-    scale:true,
-    zIndex:0,
-    height: vidHeight
-});
-
-// Navbar fixing
-
-$("#nav-menu").stick_in_parent()
-
-
-// Calling Wow
-
-new WOW().init();
-
-
-// Count Down Timer
-
-$('.countdown').final_countdown({
-    start : 1360000000, //Here use Milisecond. To convert your time you can go to this(https://currentmillis.com/) website. 
-    end   : 1390000000,
-    now : 1385000000,
-seconds: {
-borderColor: '#5677fc',
-borderWidth: '3'
-},
-minutes: {
-    borderColor: '#7e57c2',
-    borderWidth: '3'
-},
-hours: {
-    borderColor: '#4db6ac',
-    borderWidth: '3'
-},
-days: {
-    borderColor: '#d81b60',
-    borderWidth: '3'
-}}, function() {
-});
-
-
-// rotating text
-
-(function() {
-
-    var quotes = $(".quotes");
-    var quoteIndex = -1;
-    
-    function showNextQuote() {
-        ++quoteIndex;
-        quotes.eq(quoteIndex % quotes.length)
-            .fadeIn(1000)
-            .delay(1000)
-            .fadeOut(1000, showNextQuote);
-    }
-    
-    showNextQuote();
-    
-})();
-
-// smooth mouse wheel
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
-
-
-/*------------------------------------------
- Subscribe form ajax
- ------------------------------------------*/
-
-
-$('#subscribe-form').submit(function(e) {
-
-    e.preventDefault();
-    var $form           = $('#subscribe-form');
-    var submit          = $('#subscribe-button');
-    var ajaxResponse    = $('#subscription-response');
-    var email           = $('#subscriber-email').val();
-
-    $.ajax({
-        type: 'POST',
-        url: 'php/subscribe.php',
-        dataType: 'json',
-        data: {
-            email: email
-        },
-        cache: false,
-        beforeSend: function(result) {
-            submit.val("Joining...");
-        },
-        success: function(result) {
-            if(result.sendstatus == 1) {
-                ajaxResponse.html(result.message);
-                $form.fadeOut(500);
-            } else {
-                ajaxResponse.html(result.message);
-                submit.val("Join");
-            }
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 600) {
+            $('.scrollup').fadeIn('slow');
+        } else {
+            $('.scrollup').fadeOut('slow');
         }
     });
+    $('.scrollup').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 1000);
+        return false;
+    });
 
+
+
+
+//<!-- =============================================== -->
+//<!-- ========== scrolldown.js ========== -->
+//<!-- =============================================== -->
+
+$('.scrolldown a').bind('click', function () {
+    $('html , body').stop().animate({
+        scrollTop: $($(this).attr('href')).offset().top - 160
+    }, 1500, 'easeInOutExpo');
+    event.preventDefault();
 });
+
+			
+//<!-- =============================================== -->
+//<!-- ========== bootstrap scrollspy ========== -->
+//<!-- =============================================== -->
+    
+    
+    $('body').scrollspy({
+    	target: '.navbar',
+    	offset: 160
+    });
+
+//<!-- =============================================== -->
+//<!-- ========== navbardown.js ========== -->
+//<!-- =============================================== -->
+
+	$('.nav a').bind('click', function () {
+		$('html , body').stop().animate({
+			scrollTop: $($(this).attr('href')).offset().top - 80
+		}, 1500, 'easeInOutExpo');
+		event.preventDefault();
+	});			
+				
+			
+
+	new WOW().init();
+
+	//$('.portfolio_content').masonry();
+	
+	
+	
+	
+	
+$('.grid').isotope({
+  itemSelector: '.grid-item',
+  percentPosition: true,
+  masonry: {
+    // use outer width of grid-sizer for columnWidth
+    columnWidth: '.grid-sizer'
+  }
+})
+
+	//$('.counter').counterUp({
+	//	delay: 10,
+	//	time: 1580
+	//});
+		
+		
+});
+
+
+
+
+
+
+		
+  
+ 
+
+
+	
