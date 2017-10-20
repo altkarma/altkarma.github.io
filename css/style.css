@@ -360,14 +360,46 @@ a:hover{
 
 /* Banner section */
 
-.banner{
+/*.banner{
 	background:url(../images/bannerbg.jpg) no-repeat;
 	position:relative;
 	background-size:cover;
 }
+.main_banner_area video{
+	position: relative;
+	z-index: -1;
+}
+*/
+/*New Code Below */
 
+
+video#bgVideo {
+position: relative;
+width: 1700;
+height: auto;
+z-index: -2; // Put the video behind all other elements
+}
+
+@media only screen and (max-width: 768px) {
+  video {
+    display:none;
+  }
+  body{
+    background-image:url("../images/bannerbg.jpg");
+  }
+}
+
+.single_banner_text,#new_text{
+	position: absolute;
+	padding-left: 261px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	z-index: 4;
+}
+
+/*New Code Above*/
 .main_banner_area{
-	padding:250px 0px;
+	padding:194px 0px;
 	overflow:hidden;
 }
 
