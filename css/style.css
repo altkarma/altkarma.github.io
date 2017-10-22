@@ -390,8 +390,8 @@ z-index: -2; // Put the video behind all other elements
 }
 
 .single_banner_text,#new_text{
-	position: absolute;
-	padding-left: 261px;
+	position: relative;
+	padding-left: 120px;
 	padding-top: 100px;
 	padding-bottom: 100px;
 	z-index: 4;
@@ -399,7 +399,7 @@ z-index: -2; // Put the video behind all other elements
 
 /*New Code Above*/
 .main_banner_area{
-	padding:194px 0px;
+	padding:75px 0px;
 	overflow:hidden;
 }
 
